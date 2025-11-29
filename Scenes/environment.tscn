@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqagux8ysu7ej"]
+
+[ext_resource type="PackedScene" uid="uid://b4vwipdnuin6y" path="res://3D Models/city_background/city_scene_01.obj" id="1_mfu5p"]
+[ext_resource type="PackedScene" uid="uid://bcwf15msxb4oa" path="res://Scenes/NotePicker.tscn" id="2_a65fu"]
+
+[sub_resource type="Environment" id="Environment_mfu5p"]
+sdfgi_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cg2ps"]
+size = Vector2(1, 10)
+
+[node name="Environment" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.003035441, -0.57733047, 0.81650496, -0.0021462706, 0.81651056, 0.5773265, -0.9999931, 0, -0.0037175769, 2.2823832, 1.7049568, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mfu5p")
+
+[node name="city_scene_01" parent="." instance=ExtResource("1_mfu5p")]
+
+[node name="Road" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0.17364818, 0.9848077, 0, 0.9848077, -0.17364818, -1, -7.590403e-09, -4.304731e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9)
+mesh = SubResource("PlaneMesh_cg2ps")
+skeleton = NodePath("../../..")
+
+[node name="NotePicker" parent="Road" instance=ExtResource("2_a65fu")]
+transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, 0.62797356, 0, 0)
+
+[node name="NotePicker2" parent="Road" instance=ExtResource("2_a65fu")]
+transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, 0.00081443787, 0, 0)
+line = 2
+
+[node name="NotePicker3" parent="Road" instance=ExtResource("2_a65fu")]
+transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, -0.5672822, 0, 0)
+line = 3
