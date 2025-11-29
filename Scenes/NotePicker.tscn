@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcwf15msxb4oa"]
+[gd_scene load_steps=6 format=3 uid="uid://bcwf15msxb4oa"]
 
 [ext_resource type="Script" uid="uid://du8pnf7ebk13x" path="res://Scenes/note_picker.gd" id="1_jor6h"]
+[ext_resource type="Material" uid="uid://b18uhgtx0qvvx" path="res://Scenes/yellow_mat.tres" id="2_7bg4s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ke7k"]
-albedo_color = Color(0.30588236, 0.77254903, 0.2627451, 1)
-emission_enabled = true
-emission = Color(0.30588236, 0.77254903, 0.2627451, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f77jt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1y3n"]
+next_pass = SubResource("StandardMaterial3D_f77jt")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jor6h"]
+material = ExtResource("2_7bg4s")
 
 [node name="NotePicker" type="Node3D"]
 script = ExtResource("1_jor6h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.01, 0)
-material_override = SubResource("StandardMaterial3D_5ke7k")
+material_override = SubResource("StandardMaterial3D_e1y3n")
 mesh = SubResource("PlaneMesh_jor6h")
