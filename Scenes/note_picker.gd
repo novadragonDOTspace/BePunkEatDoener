@@ -5,7 +5,30 @@ extends Node3D
 func _ready() -> void:
 	pass # Replace with function body.
 
+var is_pressed = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _input(event):
+	match line:
+		1:
+			if event.is_action_pressed("ui_left"):
+				is_pressed = true
+			elif event.is_action_released("ui_left"):
+				is_pressed = false
+		2:
+			if event.is_action_pressed("ui_up"):
+				is_pressed = true
+			elif event.is_action_released("ui_up"):
+				is_pressed = false
+		3:
+			if event.is_action_pressed("ui_right"):
+				is_pressed = true
+			elif event.is_action_released("ui_right"):
+				is_pressed = false
+				
+				
+				
+func _physics_process(_delta: float) -> void:
+	if is_pressed:
+		self.scale = Vector3(0.9, 0.9, 0.9)
+	else:
+		self.scale = Vector3(1,1,1)
