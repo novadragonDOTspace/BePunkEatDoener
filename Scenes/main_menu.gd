@@ -18,3 +18,8 @@ func _on_settings_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	print("exit pressed")
+	get_tree().quit()
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit()
