@@ -1,40 +1,1534 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqagux8ysu7ej"]
+[gd_scene load_steps=8 format=3 uid="uid://camc4nedaxfw1"]
 
 [ext_resource type="PackedScene" uid="uid://b4vwipdnuin6y" path="res://3D Models/city_background/city_scene_01.obj" id="1_mfu5p"]
-[ext_resource type="PackedScene" uid="uid://bcwf15msxb4oa" path="res://Scenes/NotePicker.tscn" id="2_a65fu"]
-
-[sub_resource type="Environment" id="Environment_mfu5p"]
-sdfgi_enabled = true
+[ext_resource type="PackedScene" path="res://Scenes/NotePicker.tscn" id="2_a65fu"]
+[ext_resource type="Texture2D" uid="uid://brk24dvgoq141" path="res://2D/rat_1.png" id="3_vpl2n"]
+[ext_resource type="Texture2D" uid="uid://dmxopd1gxqpwq" path="res://2D/rat_2.png" id="4_osnen"]
+[ext_resource type="Texture2D" uid="uid://ddse7u07jqvn5" path="res://2D/rat_3.png" id="5_djr8b"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cg2ps"]
 size = Vector2(1, 10)
 
+[sub_resource type="Environment" id="Environment_mfu5p"]
+sdfgi_enabled = true
+
 [node name="Environment" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.003035441, -0.57733047, 0.81650496, -0.0021462706, 0.81651056, 0.5773265, -0.9999931, 0, -0.0037175769, 2.2823832, 1.7049568, 0)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_mfu5p")
+[node name="Road" type="Node3D" parent="CanvasLayer"]
+transform = Transform3D(-4.371139e-08, 0.17364818, 0.9848077, 0, 0.9848077, -0.17364818, -1, -7.590403e-09, -4.304731e-08, 0, 0.7127192, 0)
 
-[node name="city_scene_01" parent="." instance=ExtResource("1_mfu5p")]
-
-[node name="Road" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0.17364818, 0.9848077, 0, 0.9848077, -0.17364818, -1, -7.590403e-09, -4.304731e-08, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Road"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CanvasLayer/Road"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9)
 mesh = SubResource("PlaneMesh_cg2ps")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="NotePicker" parent="Road" instance=ExtResource("2_a65fu")]
+[node name="NotePicker" parent="CanvasLayer/Road" instance=ExtResource("2_a65fu")]
 transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, 0.62797356, 0, 0)
 line = 3
 
-[node name="NotePicker2" parent="Road" instance=ExtResource("2_a65fu")]
+[node name="NotePicker2" parent="CanvasLayer/Road" instance=ExtResource("2_a65fu")]
 transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, 0.00081443787, 0, 0)
 line = 2
 
-[node name="NotePicker3" parent="Road" instance=ExtResource("2_a65fu")]
+[node name="NotePicker3" parent="CanvasLayer/Road" instance=ExtResource("2_a65fu")]
 transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, -0.5672822, 0, 0)
 line = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer2"]
+transform = Transform3D(-0.003035441, -0.57733047, 0.81650496, -0.0021462706, 0.81651056, 0.5773265, -0.9999931, 0, -0.003717577, 2.2823832, 1.7049568, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer2"]
+environment = SubResource("Environment_mfu5p")
+
+[node name="city_scene_01" parent="CanvasLayer2" instance=ExtResource("1_mfu5p")]
+
+[node name="GPUParticlesAttractorSphere3D" type="Node3D" parent="CanvasLayer2"]
+transform = Transform3D(-4.371139e-08, 0.17364818, 0.9848077, 0, 0.9848077, -0.17364818, -1, -7.590403e-09, -4.304731e-08, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.4901161e-08, -3.5527137e-15, 1.4901161e-08, 1, 0, 0, 0)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, 7.996313e-08, -0.31766212, -1.8015517)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, 3.6082737, 2.7388255e-08, 1.553265e-07)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 3.8893397, -0.39939722, -2.265094)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="GPUParticlesAttractorSphere3D2" type="Node3D" parent="CanvasLayer2"]
+transform = Transform3D(-4.3711392e-08, 0.1736482, 0.9848077, 6.1692226e-16, 0.9848077, -0.1736482, -1, -7.590404e-09, -4.304731e-08, -2.5190737, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.4901161e-08, -3.5527137e-15, 1.4901161e-08, 1, 0, 0, 0)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, 7.996313e-08, -0.31766212, -1.8015517)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, 3.6082737, 2.7388255e-08, 1.553265e-07)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 3.8893397, -0.39939722, -2.265094)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D2/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="GPUParticlesAttractorSphere3D3" type="Node3D" parent="CanvasLayer2"]
+transform = Transform3D(-4.3711392e-08, 0.1736482, 0.9848077, 6.1692226e-16, 0.9848077, -0.1736482, -1, -7.590404e-09, -4.304731e-08, -5.6907983, 1.1920929e-07, 0)
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.4901161e-08, -3.5527137e-15, 1.4901161e-08, 1, 0, 0, 0)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, 7.996313e-08, -0.31766212, -1.8015517)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D2/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, 3.6082737, 2.7388255e-08, 1.553265e-07)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D3/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Node3D4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 3.8893397, -0.39939722, -2.265094)
+
+[node name="Rat instance" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, 0, 0, 8.881784e-16, 1.0000001, -2.9802322e-08, -7.1054274e-15, 2.9802322e-08, 1.0000001, -1.1018138, -8.3632115e-09, -4.7430124e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance2" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -1.8284674, -0.1939936, -1.1001921)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance2"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance3" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 1.0000004, -4.4703484e-08, -1.4210855e-14, 4.4703484e-08, 1.0000004, -0.5734288, -0.16725926, -0.94857454)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance3"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance4" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -2.1033745, -1.5965465e-08, -9.054463e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance4"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance5" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -1.1018138, 0.13303304, 0.75446796)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance5"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance6" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, -0.5586009, -4.2400075e-09, -2.404627e-08)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance6"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance7" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, -8.881784e-16, -7.1054274e-15, 1.7763568e-15, 1.0000005, -4.4703484e-08, -1.7763568e-14, 4.4703484e-08, 1.0000005, -0.404398, 0.08562967, 0.48563)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance7"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
+
+[node name="Rat instance8" type="Node3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4"]
+transform = Transform3D(1, 0, -3.5527137e-15, 8.881784e-16, 1.0000002, -2.9802322e-08, -1.0658141e-14, 2.9802322e-08, 1.0000002, 0.043420076, 3.2957595e-10, 1.8691177e-09)
+
+[node name="Sprite3D" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("3_vpl2n")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, 0, 2.220446e-16, 0.25000003, -7.450581e-09, -1.7763568e-15, 7.450581e-09, 0.25000003, -0.676231, -0.074488916, -0.07498541)
+texture = ExtResource("4_osnen")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CanvasLayer2/GPUParticlesAttractorSphere3D3/Node3D4/Rat instance8"]
+transform = Transform3D(0.25, 0, -8.881784e-16, 2.220446e-16, 0.25000006, -7.450581e-09, -2.6645353e-15, 7.450581e-09, 0.25000006, -0.676231, -0.12068347, -0.3369677)
+texture = ExtResource("5_djr8b")
