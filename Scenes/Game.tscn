@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwi3h5vju0s5b"]
 
-[ext_resource type="Script" path="res://Scenes/game.gd" id="1_j5yw3"]
+[ext_resource type="Script" uid="uid://b1u63gj0q8n5w" path="res://Scenes/game.gd" id="1_j5yw3"]
 [ext_resource type="Script" uid="uid://d87smi3k6dq6" path="res://Code/music_manager.gd" id="2_gl6un"]
-[ext_resource type="PackedScene" uid="uid://camc4nedaxfw1" path="res://Scenes/environment.tscn" id="2_j5yw3"]
+[ext_resource type="PackedScene" uid="uid://cqagux8ysu7ej" path="res://Scenes/environment.tscn" id="2_j5yw3"]
 [ext_resource type="Resource" uid="uid://dhdmg1pk3uiuv" path="res://Music/Be Punk Eat Döner/BePunkEatDöner.tres" id="2_kldst"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="4_b2bpf"]
 [ext_resource type="Texture2D" uid="uid://byijqs7sfcls3" path="res://2D/Untitled_Artwork.png" id="6_7lihs"]

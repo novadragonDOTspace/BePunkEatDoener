@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends Node3D
 
 var green_mat = load("res://Scenes/green_mat.tres")
 var yellow_mat = load("res://Scenes/yellow_mat.tres")
@@ -22,5 +22,5 @@ func set_material():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

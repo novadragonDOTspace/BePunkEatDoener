@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://e4c6wtns108"]
 
 [ext_resource type="Script" uid="uid://bjrhlsmswmiwy" path="res://Scenes/main_menu.gd" id="1_06t4h"]
-[ext_resource type="PackedScene" path="res://Scenes/Road.tscn" id="2_48xlc"]
+[ext_resource type="PackedScene" uid="uid://cxr7ra2ivbkci" path="res://Scenes/Road.tscn" id="2_48xlc"]
 [ext_resource type="Texture2D" uid="uid://m7ijjnrpimww" path="res://2D/menu/Group_9.png" id="2_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://ceaiwhnmjs2mr" path="res://2D/menu/Group_6.png" id="3_trj04"]
 [ext_resource type="Texture2D" uid="uid://c2jq1tmrkw1xt" path="res://2D/menu/OPTION1.png" id="4_16hvj"]

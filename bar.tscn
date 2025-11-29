@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd7tsntlpfsfb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7idgk"]
+albedo_color = Color(0.2627451, 0.43137255, 0.68235296, 0.5137255)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7idgk"]
+size = Vector2(2, 0.5)
+
+[node name="Bar" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_7idgk")
+mesh = SubResource("PlaneMesh_7idgk")
