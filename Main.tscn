@@ -41,5 +41,9 @@ offset_top = 97.0
 offset_right = 42.0
 offset_bottom = 120.0
 
+[node name="GamePlayLayer" type="Node3D" parent="."]
+
+[node name="BackgroundLayer" type="Node3D" parent="."]
+
 [connection signal="pressed" from="TestGround/SwitchToBad" to="TestGround" method="_on_switch_to_bad_pressed"]
 [connection signal="pressed" from="TestGround/SwitchToGood" to="TestGround" method="_on_switch_to_good_pressed"]
