@@ -13,25 +13,28 @@ func _ready() -> void:
 	main_node = get_parent()
 	mm = main_node.mm
 	mm.load_song(placeholderSong)
-	mm.play()
+	mm.play_song()
+	mm.r.beat.connect(beat)
 
 func _physics_process(_delta: float) -> void:
+	pass
+
+func beat(_weh):
+	print(_weh)
 	for i in placeholderSong.Notes:
-		if(i.time * 1000 == mm.songposition):
+		if(i.time == _weh ):
 			print("hahahahahahahaha")
-			var pos: Vector2 = Vector2(mm.songposition, mm.songposition)
+			print(i.time," " ,i.row)
+			var pos: Vector2 = Vector2(i.row * 100, mm.r.current_beat * 100)
 			var sprite: Sprite2D =  Sprite2D.new()
 			sprite.position = pos
+			sprite.texture = placeHolderSprite
 			add_child(sprite)
-
-	SongTimeLabel.text = "%s" % (mm.songposition/1000)
 
 
 func _on_switch_to_good_pressed() -> void:
-	mm.switch_mode("good")
+	mm.switch_mode(MusicManager.gameplay_level.GOOD)
 
-func _on_switch_to_base_pressed() -> void:
-	mm.switch_mode("base")
 
 func _on_switch_to_bad_pressed() -> void:
-	mm.switch_mode("bad")
+	mm.switch_mode(MusicManager.gameplay_level.BAD)

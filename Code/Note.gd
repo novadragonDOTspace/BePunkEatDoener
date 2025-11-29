@@ -1,5 +1,5 @@
 class_name Note
 extends Resource
 
-var time: float
-var row: int
+@export var time: float
+@export var row: int

@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="Song" load_steps=15 format=3 uid="uid://dhdmg1pk3uiuv"]
+
+[ext_resource type="AudioStream" uid="uid://cfm4r3gss2tuy" path="res://Music/Be Punk Eat Döner/base.wav" id="1_b5c0v"]
+[ext_resource type="Script" uid="uid://bpim0owbr3w6w" path="res://Code/Note.gd" id="1_h2au7"]
+[ext_resource type="Script" uid="uid://cuoel6vvy4y85" path="res://Code/Song.gd" id="2_fl3eq"]
+[ext_resource type="AudioStream" uid="uid://bhb86h0gy1sff" path="res://Music/Be Punk Eat Döner/top.wav" id="2_xra0e"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ccc46"]
+stream_count = 2
+stream_0/stream = ExtResource("1_b5c0v")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_xra0e")
+stream_1/volume = 0.0
+
+[sub_resource type="Resource" id="Resource_b5c0v"]
+script = ExtResource("1_h2au7")
+time = 1.0
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_xra0e"]
+script = ExtResource("1_h2au7")
+time = 2.0
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_ccc46"]
+script = ExtResource("1_h2au7")
+time = 3.0
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_wdoin"]
+script = ExtResource("1_h2au7")
+time = 2.0
+row = 1
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_se6ip"]
+script = ExtResource("1_h2au7")
+time = 3.0
+row = 1
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_gt4uf"]
+script = ExtResource("1_h2au7")
+time = 4.0
+row = 1
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_olgxx"]
+script = ExtResource("1_h2au7")
+time = 3.0
+row = 2
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_ivb8n"]
+script = ExtResource("1_h2au7")
+time = 4.0
+row = 2
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[sub_resource type="Resource" id="Resource_u0le8"]
+script = ExtResource("1_h2au7")
+time = 5.0
+row = 2
+metadata/_custom_type_script = "uid://bpim0owbr3w6w"
+
+[resource]
+script = ExtResource("2_fl3eq")
+Name = "Be Punk Eat Döner"
+BPM = 140.0
+Interpret = "Henzki"
+Notes = Array[ExtResource("1_h2au7")]([SubResource("Resource_b5c0v"), SubResource("Resource_xra0e"), SubResource("Resource_ccc46"), SubResource("Resource_wdoin"), SubResource("Resource_se6ip"), SubResource("Resource_gt4uf"), SubResource("Resource_olgxx"), SubResource("Resource_ivb8n"), SubResource("Resource_u0le8")])
+Audio = SubResource("AudioStreamSynchronized_ccc46")
+metadata/_custom_type_script = "uid://cuoel6vvy4y85"
