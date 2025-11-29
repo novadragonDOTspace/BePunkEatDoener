@@ -1,11 +1,26 @@
 extends Node3D
 
+var green_mat = load("res://Scenes/green_mat.tres")
+var yellow_mat = load("res://Scenes/yellow_mat.tres")
+var red_mat = load("res://Scenes/red_mat.tres")
+
 @export_range(1, 3) var line: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	_set_material()
+	set_process_input(true)
 
 var is_pressed = false
+	
+func _set_material():
+	match line:
+		1:
+			$MeshInstance3D.material_override = green_mat
+		2:
+			$MeshInstance3D.material_override = yellow_mat
+		3:
+			$MeshInstance3D.material_override = red_mat
+	
 
 func _input(event):
 	match line:
