@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://kgdosffc55po"]
+
+[ext_resource type="Script" uid="uid://byoiow63gp66q" path="res://main.gd" id="1_r0du0"]
+[ext_resource type="Resource" uid="uid://bdpuvjho30um" path="res://Music/Guardian Menace.tres" id="2_cm0pq"]
+[ext_resource type="Script" uid="uid://d87smi3k6dq6" path="res://Code/music_manager.gd" id="3_fos0i"]
+[ext_resource type="Script" uid="uid://yp5rn0iedhrk" path="res://TestGround.gd" id="3_r0du0"]
+[ext_resource type="Texture2D" uid="uid://dlfcyaupkb74" path="res://icon.svg" id="5_fos0i"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_r0du0")
+
+[node name="MusicManager" type="AudioStreamPlayer" parent="."]
+script = ExtResource("3_fos0i")
+
+[node name="TestGround" type="Node" parent="."]
+script = ExtResource("3_r0du0")
+placeholderSong = ExtResource("2_cm0pq")
+placeHolderSprite = ExtResource("5_fos0i")
+
+[node name="SwitchToBad" type="Button" parent="TestGround"]
+offset_right = 112.0
+offset_bottom = 31.0
+text = "switch to bad"
+
+[node name="SwitchToBase" type="Button" parent="TestGround"]
+offset_left = -3.0
+offset_top = 61.0
+offset_right = 116.0
+offset_bottom = 92.0
+text = "switch to Base
+"
+
+[node name="SwitchToGood" type="Button" parent="TestGround"]
+offset_left = 1.0
+offset_top = 32.0
+offset_right = 125.0
+offset_bottom = 63.0
+text = "switch to Good
+"
+
+[node name="Label" type="Label" parent="TestGround"]
+offset_left = 2.0
+offset_top = 97.0
+offset_right = 42.0
+offset_bottom = 120.0
+
+[connection signal="pressed" from="TestGround/SwitchToBad" to="TestGround" method="_on_switch_to_bad_pressed"]
+[connection signal="pressed" from="TestGround/SwitchToBase" to="TestGround" method="_on_switch_to_base_pressed"]
+[connection signal="pressed" from="TestGround/SwitchToGood" to="TestGround" method="_on_switch_to_good_pressed"]

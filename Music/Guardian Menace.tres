@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="Song" load_steps=6 format=3 uid="uid://bdpuvjho30um"]
+
+[ext_resource type="AudioStream" uid="uid://7t28dnxlie2n" path="res://PlaceholderMusic/1.18. Guardian Menace.mp3" id="1_7rl2s"]
+[ext_resource type="AudioStream" uid="uid://dt3wd3iydq7m6" path="res://PlaceholderMusic/1.19. Guardian Menace (Enemy Outpost).mp3" id="2_bkt0q"]
+[ext_resource type="AudioStream" uid="uid://d32k18whn14fi" path="res://PlaceholderMusic/1.20. Guardian Menace (Rune Critical Hit).mp3" id="3_dh1ub"]
+[ext_resource type="Script" uid="uid://cuoel6vvy4y85" path="res://Code/Song.gd" id="4_w2ssw"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_x2t4t"]
+clip_count = 3
+clip_0/name = &"base"
+clip_0/stream = ExtResource("1_7rl2s")
+clip_0/auto_advance = 0
+clip_1/name = &"bad"
+clip_1/stream = ExtResource("2_bkt0q")
+clip_1/auto_advance = 0
+clip_2/name = &"good"
+clip_2/stream = ExtResource("3_dh1ub")
+clip_2/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(0, 2): {
+"fade_beats": 1.0,
+"fade_mode": 1,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 1,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(2, 0): {
+"fade_beats": 1.0,
+"fade_mode": 2,
+"from_time": 1,
+"to_time": 2
+},
+Vector2i(2, 1): {
+"fade_beats": 1.0,
+"fade_mode": 2,
+"from_time": 1,
+"to_time": 2
+}
+}
+
+[resource]
+script = ExtResource("4_w2ssw")
+Name = "Guardian Menace"
+Interpret = "Zelda Sound Team"
+Notes = Array[float]([1.0, 2.0, 3.0, 4.0, 5000.0])
+Audio = SubResource("AudioStreamInteractive_x2t4t")
+metadata/_custom_type_script = "uid://cuoel6vvy4y85"

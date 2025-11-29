@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d32k18whn14fi"
+path="res://.godot/imported/1.20. Guardian Menace (Rune Critical Hit).mp3-a56b7b77236c995bf020da193ace5b19.mp3str"
+
+[deps]
+
+source_file="res://PlaceholderMusic/1.20. Guardian Menace (Rune Critical Hit).mp3"
+dest_files=["res://.godot/imported/1.20. Guardian Menace (Rune Critical Hit).mp3-a56b7b77236c995bf020da193ace5b19.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
