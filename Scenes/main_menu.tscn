@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://e4c6wtns108"]
+[gd_scene load_steps=8 format=3 uid="uid://e4c6wtns108"]
 
 [ext_resource type="Script" uid="uid://bjrhlsmswmiwy" path="res://Scenes/main_menu.gd" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://cxr7ra2ivbkci" path="res://Scenes/Road.tscn" id="2_48xlc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
 bg_color = Color(1, 1, 1, 1)
@@ -120,6 +121,12 @@ theme_override_font_sizes/font_size = 52
 text = "Be Punk Eat Doner"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Road" parent="." instance=ExtResource("2_48xlc")]
+
+[node name="Camera3D" type="Camera3D" parent="Road"]
+transform = Transform3D(1, 0, 0, 0, 0.8126637, 0.58273304, 0, -0.58273304, 0.8126637, 0.064113736, 0.5487528, 0)
+current = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]

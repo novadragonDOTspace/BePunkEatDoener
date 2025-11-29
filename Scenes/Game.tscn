@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://5x2cy8kbp1li"]
+
+[ext_resource type="PackedScene" uid="uid://bcwf15msxb4oa" path="res://Scenes/NotePicker.tscn" id="1_iukft"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cg2ps"]
+size = Vector2(1, 10)
+
+[node name="Road" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9)
+mesh = SubResource("PlaneMesh_cg2ps")
+
+[node name="NotePicker" parent="." instance=ExtResource("1_iukft")]
+transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, 0.62797356, 0, 0)
+
+[node name="NotePicker2" parent="." instance=ExtResource("1_iukft")]
+transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, 0.00081443787, 0, 0)
+line = 2
+
+[node name="NotePicker3" parent="." instance=ExtResource("1_iukft")]
+transform = Transform3D(0.8, 0, 0, 0, 0.79337823, -0.10271801, 0, 0.10271801, 0.79337823, -0.5672822, 0, 0)
+line = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.94832367, 0.31730464, 0, -0.31730464, 0.94832367, 0, 0.5210106, 0.67388797)
+current = true
+fov = 64.9

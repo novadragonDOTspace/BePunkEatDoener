@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxr7ra2ivbkci"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cg2ps"]
+size = Vector2(0.8, 10)
+
+[node name="Road" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -9)
+mesh = SubResource("PlaneMesh_cg2ps")
